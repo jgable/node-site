@@ -1,0 +1,82 @@
+
+.gradient(@start, @end) {
+	background-color: @start;
+	background-image: linear-gradient(to bottom, @start, @end);
+	background-image: -webkit-linear-gradient(top, @start, @end);
+}
+
+//  Helpers
+
+.clear() { &:after { clear: both; content: ''; display: table; } }
+.truncate() { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.smallcaps() {
+	font-weight: bold;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+//  Colors
+
+	//  Grayscale
+
+	@gray10: #1a1a1a;
+	@gray15: #262626;
+	@gray20: #333;
+	@gray30: #4d4d4d;
+	@gray40: #666;
+	@gray50: #808080;
+	@gray60: #999;
+	@gray70: #b3b3b3;
+	@gray80: #ccc;
+	@gray83: #d5d5d5;
+	@gray87: #ddd;
+	@gray90: #e6e6e6;
+	@gray93: #eee;
+	@gray97: #f7f7f7;
+	@white: #fff;
+
+	//  General
+
+	@green-dark: #5c9132;
+	@green-hover: #62b621;
+	@green: #7ac143;
+	@green80: #95cd69;
+	@green60: #afda8e;
+	@blue-dark: #164d7d;
+	@blue: #1d67a7;
+	@blue80: #4a85b9;
+	@blue60: #77a4ca;
+	@blue40: #a5c2dc;
+	@blue20: #d2e1ed;
+	@pink: #fc5ea6;
+	@red-dark: #ee0029;
+	@red: #f44;
+
+	//  Networks
+
+	@twitter-dark: #2797c8;
+	@twitter: #2caae1;
+	@linkedin-dark: #0078a8;
+	@linkedin: #008ac1;
+	@facebook-dark: #314a7f;
+	@facebook: #3b5998;
+	@google-dark: #c24232;
+	@google: #dc4b38;
+	@analytics-dark: #e69800;
+	@analytics: #ffa900;
+
+	//  Specific
+
+	@engagement: #e38;
+	@copper: #cc5e14;
+	@teal: #00a99d;
+	@purple: #83367a;
+
+
+//  Buttons
+
+.green() { background: @green; &:hover { background: @green-hover; } }
+.blue() { background: @blue; &:hover { background: @blue-dark; } }
+.red() { background: @red; &:hover { background: @red-dark; } }
+.orange() { background: @analytics; &:hover { background: @analytics-hover; } }

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/site.css" />
+
+    {{#each pageStyles}}
+    <link rel="stylesheet" href="/css/{{this}}.css" />
+    {{/each}}
+</head>
+<body class="s3 {{bodyClass}}">
+    <div class="loading initial"></div>
+    
+    {{{body}}}
+
+    <script src="/js/vendor.js"></script>
+    <script src="/js/templates.built.js"></script>
+    <script src="/js/site.js"></script>
+
+    {{#each pageScripts}}
+    <script src="/js/{{this}}.js"></script>
+    {{/each}}
+</body>
+</html>
