@@ -7,7 +7,8 @@ module.exports = {
 				'client/components/backbone/backbone.js',
 				'client/components/moment/min/moment.min.js',
 				'client/components/mustache/mustache.js',
-				'client/components/handlebars/handlebars.js'
+				'client/components/handlebars/handlebars.js',
+				'client/components/bootstrap/dist/js/bootstrap.js'
 			]
 		}
 	}
