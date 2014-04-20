@@ -44,17 +44,21 @@
             -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <!-- TODO: If logged in show user name -->
+            {{^user}}
             <li><a href="/login">Login</a></li>
+            {{/user}}
+            {{#user}}
+            <!-- If logged in show user name -->
+            <li><a href="/user">{{username}}</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {{/user}}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
-
       {{{body}}}
-
     </div> <!-- /container -->
     
     <script src="/js/vendor.js"></script>
@@ -62,7 +66,7 @@
     <script src="/js/site.js"></script>
 
     {{#each pageScripts}}
-    <script src="/js/{{this}}.js"></script>
+    <script src="/js/pages/{{this}}.js"></script>
     {{/each}}
 </body>
 </html>

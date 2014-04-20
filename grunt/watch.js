@@ -11,7 +11,7 @@ module.exports = {
         tasks: ['handlebars']
     },
     scripts: {
-        files: ['client/scripts/**/*.js'],
+        files: ['client/js/**/*.js'],
         tasks: ['scripts'],
         options: {
             livereload: true

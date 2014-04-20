@@ -1,0 +1,6 @@
+
+{{#user}}
+<h3>{{username}}</h3>
+
+<p>Created: {{createdAt}}</p>
+{{/user}}

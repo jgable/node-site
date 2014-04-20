@@ -1,7 +1,8 @@
 module.exports = {
     'styles': ['less'],
-    'scripts': ['concat:vendor', 'copy:scripts'],
+    'scripts': ['concat', 'copy:scripts'],
+    'images': ['copy:images'],
     'templates': ['handlebars'],
-    'server': ['styles', 'scripts', 'templates', 'express:dev', 'watch'],
+    'server': ['clean:build', 'styles', 'images', 'scripts', 'templates', 'express:dev', 'watch'],
     'default': ['server']
 };

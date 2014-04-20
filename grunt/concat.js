@@ -11,5 +11,13 @@ module.exports = {
 				'client/components/bootstrap/dist/js/bootstrap.js'
 			]
 		}
+	},
+	site: {
+		files: {
+			'build/js/site.js': [
+				'client/js/site/site.js',
+				'client/js/site/*.js'
+			]
+		}
 	}
 };

@@ -1,5 +1,7 @@
 (function () {
 	'use strict';
+
+	var APP = {};
 	
-	console.log('Hello Node!');
+	window.APP = APP;
 }());

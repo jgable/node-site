@@ -1,10 +1,10 @@
 
 module.exports = function (app) {
-	app.get('/', function (req) {
-        if (!req.logout) {
-            return req.redirect('/');
+    app.get('/', function (req, res) {
+        if (req.logout) {
+            req.logout();
         }
 
-        req.logout();
+        res.redirect('/');
     });
 };

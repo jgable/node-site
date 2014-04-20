@@ -1,10 +1,10 @@
 
-var passport = require('passport');
+var ensureAuthenticated = require('../middleware/auth').ensureAuthenticated;
 
 module.exports = function (app) {
-	app.get('/', passport.authenticate('local', {
-		failureRedirect: '/login?ref=/home'
-	}), function (req, res) {
-		res.render('home');
-	});
+    app.get('/', ensureAuthenticated('home'), function (req, res) {
+        res.render('home', {
+            user: req.user
+        });
+    });
 };
