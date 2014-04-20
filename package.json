@@ -1,6 +1,10 @@
 {
   "name": "package",
   "version": "0.0.0",
+  "scripts": {
+    "start": "grunt server",
+    "test": "grunt jshint2"
+  },
   "dependencies": {
     "lodash": "~2.4.1",
     "express": "^4.0.0",
