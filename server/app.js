@@ -21,6 +21,9 @@ var path     = require('path'),
 var configureApp = function () {
     app.set('port', port);
 
+    // Setup the client side static assets in the client folder
+    app.use(express.static(path.join(__dirname, '..', 'build')));
+
     // Set up the handlebars view engine
     hbs = exphbs.create({
         layoutsDir: path.join(__dirname, 'views', 'layouts'),
@@ -55,9 +58,6 @@ var configureApp = function () {
 
     passport.serializeUser(User.serializeUser());
     passport.deserializeUser(User.deserializeUser());
-
-    // Setup the client side static assets in the client folder
-    app.use(express.static(path.join(__dirname, '..', 'build')));
 
     // Setup the page routing
     app.use(enrouten({
