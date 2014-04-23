@@ -20,7 +20,7 @@
     "connect-multiparty": "~1.0.3",
     "body-parser": "~1.0.2",
     "connect": "~2.14.4",
-    "connect-session-sequelize": "0.0.5"
+    "connect-session-sequelize": "~1.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
