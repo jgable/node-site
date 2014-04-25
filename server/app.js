@@ -76,9 +76,15 @@ if (!module.parent) {
 
         configureApp();
 
-        // Start listening for requests
-        app.listen(app.get('port'), function () {
-            console.log('Now listening on port ' + app.get('port'));
+        db.sync(function (err) {
+            if (err) {
+                throw err;
+            }
+
+            // Start listening for requests
+            app.listen(app.get('port'), function () {
+                console.log('Now listening on port ' + app.get('port'));
+            });
         });
     });
 } else {

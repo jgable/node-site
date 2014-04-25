@@ -10,6 +10,7 @@ var db = new Sequelize('site-db', 'user', 'pass', {
 module.exports = {
     instance: db,
     init: function (done) {
+        var sync = this.sync;
         // Authenticate the db
         db.authenticate()
             .complete(function (err) {
@@ -18,14 +19,17 @@ module.exports = {
                 }
 
                 // Synchronize the db
-                db.sync()
-                    .complete(function (err) {
-                        if (err) {
-                            return done(err);
-                        }
+                sync(done);
+            });
+    },
+    sync: function (done) {
+        db.sync()
+            .complete(function (err) {
+                if (err) {
+                    return done(err);
+                }
 
-                        done();
-                    });
+                done();
             });
     }
 };
