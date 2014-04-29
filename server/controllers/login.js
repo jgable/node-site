@@ -9,8 +9,7 @@ module.exports = function (app) {
 
         res.render('login', {
             user: req.user,
-            ref: req.param('ref'),
-            pageScripts: ['login']
+            ref: req.param('ref')
         });
     });
 
@@ -19,34 +18,22 @@ module.exports = function (app) {
             if (err) { return next(err); }
 
             if (!user) {
-                return res.render('login', {
-                    user: req.user,
-                    username: req.param('username'),
-                    password: req.param('password'),
-                    ref: req.param('ref'),
-                    loginError: 'Invalid user name or password',
-                    pageScripts: ['login']
+                return res.json({
+                    error: 'Invalid user name or password'
                 });
             }
 
             req.login(user, function (err) {
                 if (err) {
-                    return res.render('login', {
-                        user: req.user,
-                        username: req.param('username'),
-                        password: req.param('password'),
-                        ref: req.param('ref'),
-                        loginError: 'Unable to log in at this time.',
-                        pageScripts: ['login']
+                    return res.json({
+                        error: 'Unable to log in at this time'
                     });
                 }
 
-                if (req.param('ref')) {
-                    // TODO: Verify local refer not external
-                    return res.redirect(req.param('ref').replace('http', '').replace('.', '-'));
-                }
-
-                res.redirect('/home');
+                return res.json({
+                    user: user,
+                    ref: req.param('ref')
+                });
             });
         })(req, res, next);
     });

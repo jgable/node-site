@@ -9,8 +9,7 @@ module.exports = function (app) {
         }
 
         res.render('register', {
-            ref: req.param('ref'),
-            pageScripts: ['register']
+            ref: req.param('ref')
         });
     });
 
@@ -30,35 +29,29 @@ module.exports = function (app) {
         }
 
         if (errors) {
-            return res.render('register', {
-                ref: req.param('ref'),
-                username: username,
-                password: password,
-                registerError: errors.username || errors.password || 'Unknown validation error',
-                pageScripts: ['register']
+            return res.json({
+                error: errors.username || errors.password || 'Unknown validation error'
             });
         }
 
         User.register(newUser, password, function (err, savedUser) {
                 if (err) {
-                    return res.render('register', {
-                        ref: req.param('ref'),
-                        registerError: 'Unable to register at this time.',
-                        pageScripts: ['register']
+                    return res.json({
+                        error: 'Unable to register at this time.'
                     });
                 }
 
                 req.login(savedUser, function (err) {
                     if (err) {
-                        return res.render('register', {
-                            ref: req.param('ref'),
-                            registerError: 'Unable to log in at this time',
-                            pageScripts: ['register']
+                        return res.json({
+                            error: 'Unable to log in at this time'
                         });
                     }
 
-                    var ref = req.param('ref') || 'home';
-                    res.redirect('/' + ref);
+                    return res.json({
+                        user: savedUser,
+                        ref: req.param('ref')
+                    });
                 });
             });
     });

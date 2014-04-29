@@ -7,11 +7,11 @@ module.exports = {
         }
     },
     templates: {
-        files: ['client/templates/**/*.stache'],
-        tasks: ['handlebars']
+        files: ['client/app/templates/**/*.hbs'],
+        tasks: ['emberTemplates']
     },
     scripts: {
-        files: ['client/js/**/*.js'],
+        files: ['client/app/**/*.js'],
         tasks: ['scripts'],
         options: {
             livereload: true

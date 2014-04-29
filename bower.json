@@ -1,18 +1,27 @@
 {
-  "name": "brotado",
+  "name": "node-site",
   "version": "0.0.0",
   "authors": [
-    "Sprout Social <engineering@sproutsocial.com>"
+    "Jacob Gable <jacob.gable@gmail.com>"
   ],
   "license": "MIT",
   "private": true,
   "dependencies": {
     "jquery": "~2.1.0",
     "lodash": "~2.4.1",
-    "backbone": "~1.1.2",
-    "moment": "~2.5.1",
-    "mustache": "~0.8.1",
     "handlebars": "~1.3.0",
+    "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
+    "ember": "~1.5.0",
+    "ember-data": "~1.0.0-beta.7",
+    "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
+    "ic-ajax": "~1.0.4",
+    "ember-testing-httpRespond": "~0.1.1",
+    "loader.js": "git://github.com/stefanpenner/loader.js",
+    "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1",
+    "moment": "~2.5.1",
     "bootstrap": "~3.1.1"
+  },
+  "resolutions": {
+    "ember": "~1.5.0"
   }
 }
