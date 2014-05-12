@@ -1,33 +1,33 @@
 import ajax from 'appkit/utils/ajax';
 
 export default Ember.ObjectController.extend({
-    username: null,
-    password: null,
     error: null,
     
     actions: {
-        register: function () {
+        reset: function () {
             var self = this;
-            
-            this.set('error', false);
 
+            this.set('error', false);
+            this.set('success', false);
+            
             return ajax({
-                url: '/register',
+                url: '/forgotpassword/reset',
                 type: 'POST',
                 data: {
                     username: this.get('username'),
                     password: this.get('password'),
-                    ref: this.get('ref')
+                    resetKey: this.get('resetKey')
                 }
             }).then(function (resp) {
-                if (resp && resp.user) {
-                    self.send('loggedIn', resp.user);
-                    
-                    self.transitionToRoute(resp.ref || 'home');
+                if (resp.error) {
+                    self.set('error', resp.error);
+                    return;
                 }
 
-                self.set('error', resp.error);
+                self.send('loggedIn', resp.user);
+
+                self.transitionToRoute('home');
             });
         }
-    }
+    },
 });

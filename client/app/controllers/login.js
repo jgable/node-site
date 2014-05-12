@@ -1,6 +1,10 @@
 import ajax from 'appkit/utils/ajax';
 
 export default Ember.ObjectController.extend({
+    username: null,
+    password: null,
+    error: null,
+    
     actions: {
         login: function () {
             var self = this;
@@ -17,6 +21,8 @@ export default Ember.ObjectController.extend({
                 }
             }).then(function (resp) {
                 if (resp && resp.user) {
+                    self.send('loggedIn', resp.user);
+
                     self.transitionToRoute(resp.ref || 'home');
                 }
 

@@ -1,18 +1,8 @@
 
-var passport = require('passport');
+var _ = require('lodash'),
+    passport = require('passport');
 
 module.exports = function (app) {
-    app.get('/', function (req, res) {
-        if (req.isAuthenticated()) {
-            return res.redirect('/home');
-        }
-
-        res.render('login', {
-            user: req.user,
-            ref: req.param('ref')
-        });
-    });
-
     app.post('/', function (req, res, next) {
         passport.authenticate('local', function (err, user) {
             if (err) { return next(err); }
@@ -31,7 +21,7 @@ module.exports = function (app) {
                 }
 
                 return res.json({
-                    user: user,
+                    user: _.pick(user.values, 'id', 'username', 'createdAt', 'updatedAt'),
                     ref: req.param('ref')
                 });
             });

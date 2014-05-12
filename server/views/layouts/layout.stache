@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>{{title}}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="/css/site.css" />
@@ -23,7 +23,11 @@
 
     <script>
         window.ENV = window.ENV || {};
-        window.App = requireModule('appkit/app')['default'].create(ENV.APP);
+        window.ENV.APP = window.ENV.APP || {};
+        {{#user}}
+        window.ENV.APP.user = {{{this}}};
+        {{/user}}
+        window.App = requireModule('appkit/app')['default'].create(window.ENV.APP);
     </script>
 </body>
 </html>

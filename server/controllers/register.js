@@ -1,18 +1,9 @@
 
+var _ = require('lodash');
+
 var User = require('../models/user');
 
 module.exports = function (app) {
-    app.get('/', function (req, res) {
-        if (req.isAuthenticated()) {
-            var ref = req.param('ref') || 'home';
-            return res.redirect('/' + ref);
-        }
-
-        res.render('register', {
-            ref: req.param('ref')
-        });
-    });
-
     app.post('/', function (req, res) {
         var username = req.param('username'),
             password = req.param('password');
@@ -49,7 +40,7 @@ module.exports = function (app) {
                     }
 
                     return res.json({
-                        user: savedUser,
+                        user: _.pick(savedUser.values, 'id', 'username', 'createdAt', 'updatedAt'),
                         ref: req.param('ref')
                     });
                 });
