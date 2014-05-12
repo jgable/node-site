@@ -1,10 +1,13 @@
 
 var User = require('../models/user'),
     _ = require('lodash'),
-    mailer = require('nodemailer');
+    mailer = require('nodemailer'),
+    config = require('config'),
+    siteConfig = config.Site,
+    mailConfig = config.Mail;
 
 var sendMail = function (mailData, done) {
-    var transport = mailer.createTransport('direct');
+    var transport = mailer.createTransport(mailConfig.transport, mailConfig.server);
 
     transport.sendMail(mailData, done);
 };
@@ -18,47 +21,25 @@ module.exports = function (app) {
                 });
             }
 
-            console.log('sendmail', resettedUser.username, resettedUser.get('username'));
-
-            // TODO: Load from config
-            var siteUrl = 'localhost:3000',
+            // TODO: Load SSL status from config
+            var siteUrl = 'http://' + siteConfig.domain,
                 messageOpts = {
-                    from: 'donotreply@node-site.com',
+                    from: 'Retriever of Lost Passwords <donotreply@' + mailConfig.domain + '>',
                     to: resettedUser.username,
-                    subject: 'Reset Password Link',
+                    subject: 'Your password misses you',
                     text: 'Looks like you need a new password, follow the link below to make that happen: \n\n' +
-                            'http://' + siteUrl + '/forgotpassword/reset/' + resettedUser.resetPasswordKey + ' \n\n' +
+                            siteUrl + '/forgotpassword/reset/' + resettedUser.resetPasswordKey + ' \n\n' +
                             'Have an awesome day!'
                 };
 
-            sendMail(messageOpts, function (err, response) {
+            sendMail(messageOpts, function (err) {
                 if (err) {
                     return res.json({
                         error: 'An error occurred sending the email: ' + err.message
                     });
                 }
 
-                var timeoutHandler,
-                    sendSuccess = function () {
-                        clearTimeout(timeoutHandler);
-                        res.send(200);
-                    };
-
-                response.statusHandler.once('sent', sendSuccess);
-                response.statusHandler.once('requeued', sendSuccess);
-
-                response.statusHandler.once('failed', function () {
-                    clearTimeout(timeoutHandler);
-                    res.json({
-                        error: 'Failed to send the reset password email.'
-                    });
-                });
-
-                timeoutHandler = setTimeout(function () {
-                    res.json({
-                        error: 'Failed to send the reset password email in a timely manner.'
-                    });
-                }, 60000);
+                res.send(200);
             });
         });
     });

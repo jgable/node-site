@@ -1,0 +1,21 @@
+
+Site:
+  domain: 'node-site.com'
+
+Database:
+  name: site-db
+  user: user
+  pass: pass
+  server:
+    dialect: sqlite
+    storage: site-db.sqlite
+
+Mail:
+  domain: node-site.mailgun.org
+  transport: SMTP
+  server:
+    service: Mailgun
+    auth:
+      user: postmaster@node-site.mailgun.org
+      # Using quotes here because strings that lead with numbers cause dedent parsing error
+      pass: "123MyPassword"

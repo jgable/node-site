@@ -24,7 +24,15 @@ build/
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
 
+# Bower components
 client/components/
+
+# Built files
 dist/
 
+# Sqlite database
 *.sqlite
+
+# Custom configuration
+config/local.*
+config/runtime.json

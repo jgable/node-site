@@ -1,11 +1,8 @@
 
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize'),
+    dbConfig = require('config').Database;
 
-var db = new Sequelize('site-db', 'user', 'pass', {
-    dialect: 'sqlite',
-
-    storage: 'site-db.sqlite'
-});
+var db = new Sequelize(dbConfig.name, dbConfig.user, dbConfig.pass, dbConfig.server);
 
 module.exports = {
     instance: db,
