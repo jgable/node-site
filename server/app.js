@@ -5,6 +5,8 @@ var path     = require('path'),
 
     bodyParser = require('body-parser'),
 
+    favicon = require('serve-favicon'),
+
     passport = require('passport'),
     session  = require('express-session'),
     SequelizeStore = require('connect-session-sequelize')(session.Store),
@@ -20,6 +22,9 @@ var path     = require('path'),
 
 var configureApp = function () {
     app.set('port', port);
+
+    // Set the favicon
+    app.use(favicon(path.join(__dirname, '..', 'favicon.ico')));
 
     // Setup the client side static assets in the client folder
     app.use(express.static(path.join(__dirname, '..', 'build')));

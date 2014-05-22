@@ -23,7 +23,8 @@
     "connect-session-sequelize": "~1.0.0",
     "nodemailer": "~0.6.3",
     "config": "~0.4.35",
-    "yaml": "~0.2.3"
+    "yaml": "~0.2.3",
+    "serve-favicon": "~2.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
