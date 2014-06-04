@@ -66,7 +66,7 @@ var configureApp = function () {
 
     // Setup the page routing
     app.use(enrouten({
-        directory: path.join(__dirname, 'controllers')
+        directory: path.join(__dirname, 'routes')
     }));
 };
 
