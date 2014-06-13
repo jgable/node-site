@@ -11,6 +11,7 @@ module.exports = {
         app.use(passport.session());
 
         passport.use(User.createStrategy());
+        passport.use(User.createTokenStrategy());
 
         passport.serializeUser(User.serializeUser());
         passport.deserializeUser(User.deserializeUser());

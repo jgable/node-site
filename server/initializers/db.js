@@ -1,10 +1,10 @@
 
 var db = require('../models/db'),
-    Promise = require('bluebird');
+    Prom = require('bluebird');
 
 module.exports = {
     configure: function (app) {
-        return new Promise(function (resolve, reject) {
+        return new Prom(function (resolve, reject) {
             // Start the db connection
             db.init(function (err) {
                 if (err) {

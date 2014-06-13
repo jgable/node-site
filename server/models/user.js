@@ -1,5 +1,7 @@
 
 var Sequelize = require('sequelize'),
+    hat = require('hat'),
+    TokenStrategy = require('passport-token').Strategy,
     sequelize = require('./db').instance,
     passportLocalSequelize = require('passport-local-sequelize');
 
@@ -17,6 +19,49 @@ var User = passportLocalSequelize.defineUser(sequelize, {
                 msg: 'Email address must be valid'
             }
         },
+    },
+    token: {
+        type: Sequelize.STRING,
+        allowNull: true
+    }
+}, {
+    defineOptions: {
+        instanceMethods: {
+            generateToken: function () {
+                this.token = hat();
+
+                return this.save(['token']);
+            }
+        },
+
+        classMethods: {
+            findByToken: function (token) {
+                return this.find({
+                    where: {
+                        token: token
+                    }
+                });
+            },
+
+            createTokenStrategy: function () {
+                var self = this;
+
+                // A simple token only strategy
+                return new TokenStrategy(function (username, token, done) {
+                    self.findByToken(token)
+                        .success(function (found) {
+                            if (!found) {
+                                return done(null, false);
+                            }
+
+                            done(null, found);
+                        })
+                        .error(function (err) {
+                            done(err);
+                        });
+                });
+            }
+        }
     }
 });
 

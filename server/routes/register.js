@@ -25,25 +25,34 @@ module.exports = function (app) {
             });
         }
 
-        User.register(newUser, password, function (err, savedUser) {
+        User.register(newUser, password, function (err, registeredUser) {
                 if (err) {
                     return res.json({
                         error: 'Unable to register at this time.'
                     });
                 }
 
-                req.login(savedUser, function (err) {
-                    if (err) {
-                        return res.json({
-                            error: 'Unable to log in at this time'
-                        });
-                    }
+                // Generate a token for the user on registration
+                registeredUser.generateToken()
+                    .success(function (savedUser) {
+                        req.login(savedUser, function (err) {
+                            if (err) {
+                                return res.json({
+                                    error: 'Unable to log in at this time'
+                                });
+                            }
 
-                    return res.json({
-                        user: _.pick(savedUser.values, 'id', 'username', 'createdAt', 'updatedAt'),
-                        ref: req.param('ref')
+                            return res.json({
+                                user: _.pick(savedUser.values, 'id', 'username', 'createdAt', 'updatedAt'),
+                                ref: req.param('ref')
+                            });
+                        });
+                    })
+                    .error(function () {
+                        res.json({
+                            error: 'Unable to generate token at this time.'
+                        });
                     });
-                });
             });
     });
 };
