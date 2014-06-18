@@ -18,7 +18,7 @@ var initializer = {
             basePath: 'http://' + config.Site.domain + '/api',
             info: {
                 title: 'Node-Site',
-                description: 'This is a sample server. You can find out more about Swagger at <a href=\"http://swagger.wordnik.com\">http://swagger.wordnik.com</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters',
+                description: 'This is a sample server. You can find out more about Swagger at <a href=\"http://swagger.wordnik.com\">http://swagger.wordnik.com</a> or on irc.freenode.net, #swagger.',
                 termsOfServiceUrl: 'http://' + config.Site.domain + '/terms',
                 // contact: 'api@' + config.Site.domain,
                 license: 'MIT'
@@ -52,6 +52,7 @@ var initializer = {
             'type': 'Authentication',
             'nickname': 'login',
             'consumes': ['application/json'],
+            'produces': ['application/json'],
             'parameters': [{
                 'name': 'username',
                 'description': 'Username of the user to authenticate',
@@ -70,7 +71,29 @@ var initializer = {
                 'message': 'Invalid Username supplied'
             }]
         });
+
+        var validateResource = loginApi.resource({
+            path: '/login/validate',
+            description: 'Validate a user token'
+        });
+        validateResource.operation({
+            'method': 'GET',
+            'summary': 'Validate a user by token',
+            'notes': 'Returns user information if token is valid',
+            'type': 'LoginValidation',
+            'nickname': 'validate',
+            'produces': ['application/json'],
+            'authorizations': {
+                'tokenHeader': []
+            },
+            'parameters': [],
+            'responseMessages': [{
+                'code': 401,
+                'message': 'Invalid token supplied'
+            }]
+        });
         
+        // Specify the response for the /api/login request
         loginApi.model({
             id: 'Authentication',
             properties: {
@@ -85,6 +108,22 @@ var initializer = {
                 }
             }
         });
+        // Specify the response for the /api/login/validate request
+        loginApi.model({
+            id: 'LoginValidation',
+            properties: {
+                success: {
+                    type: 'bool'
+                },
+                timestamp: {
+                    type: 'integer'
+                },
+                user: {
+                    type: 'User'
+                }
+            }
+        });
+        // Specify the comment user response structure
         loginApi.model({
             id: 'User',
             properties: _.pick(models.User.properties, 'id', 'username', 'token', 'createdAt', 'updatedAt')
@@ -93,7 +132,7 @@ var initializer = {
         // Serve the JSON representation of the docs
         app.use('/api/api-docs', framework.docs.dispatcher());
 
-        // Serve the swagger-ui page to consume the JSON representation
+        // Serve the swagger-ui api explorer
         app.get('/api-docs', function (req, res) {
             res.render('api-docs', {
                 layout: 'swagger',

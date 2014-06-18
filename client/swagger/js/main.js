@@ -31,7 +31,7 @@
       console.log("key: " + key);
       if(key && key.trim() != "") {
         console.log("added key " + key);
-        window.authorizations.add("key", new ApiKeyAuthorization("token", key, "query"));
+        window.authorizations.add("key", new ApiKeyAuthorization("x-token", key, "header"));
       }
     });
 
