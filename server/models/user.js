@@ -44,10 +44,15 @@ var User = passportLocalSequelize.defineUser(sequelize, {
             },
 
             createTokenStrategy: function () {
-                var self = this;
+                var self = this,
+                    strategyOpts = {
+                        // Hard coding these to be same as token so only token is required
+                        usernameHeader: 'x-token',
+                        usernameField: 'token'
+                    };
 
                 // A simple token only strategy
-                return new TokenStrategy(function (username, token, done) {
+                return new TokenStrategy(strategyOpts, function (username, token, done) {
                     self.findByToken(token)
                         .success(function (found) {
                             if (!found) {

@@ -22,7 +22,7 @@ module.exports = function (app) {
                 }
 
                 return res.json({
-                    user: _.pick(user.values, 'id', 'username', 'createdAt', 'updatedAt'),
+                    user: _.pick(user.values, 'id', 'username', 'token', 'createdAt', 'updatedAt'),
                     ref: req.param('ref')
                 });
             });

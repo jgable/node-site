@@ -28,6 +28,8 @@
     "sequelize": "~1.7.2",
     "serve-favicon": "~2.0.0",
     "sqlite3": "~2.2.3",
+    "swagger-framework": "^0.11.0",
+    "swaggerize": "0.0.2",
     "yaml": "~0.2.3"
   },
   "devDependencies": {
