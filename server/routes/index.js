@@ -1,6 +1,7 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash'),
+    auth = require('../middleware/auth');
 
 module.exports = function (app) {
     var pageRoutes = [
@@ -10,6 +11,9 @@ module.exports = function (app) {
             '/forgotpassword',
             '/forgotpassword/reset/:resetKey',
             '/home'
+        ],
+        authenticatedRoutes = [
+            '/user'
         ],
         renderIndexPage = function (req, res) {
             if (!req.user) {
@@ -23,5 +27,9 @@ module.exports = function (app) {
 
     pageRoutes.forEach(function (route) {
         app.get(route, renderIndexPage);
+    });
+
+    authenticatedRoutes.forEach(function (route) {
+        app.get(route, auth.ensureAuthenticated(), renderIndexPage);
     });
 };

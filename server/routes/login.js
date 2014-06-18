@@ -1,6 +1,7 @@
 
 var _ = require('lodash'),
-    passport = require('passport');
+    passport = require('passport'),
+    auth = require('../middleware/auth');
 
 module.exports = function (app) {
     app.post('/', function (req, res, next) {
@@ -21,10 +22,18 @@ module.exports = function (app) {
                 }
 
                 return res.json({
-                    user: _.pick(user.values, 'id', 'username', 'createdAt', 'updatedAt'),
+                    user: _.pick(user.values, 'id', 'username', 'token', 'createdAt', 'updatedAt'),
                     ref: req.param('ref')
                 });
             });
         })(req, res, next);
+    });
+
+    app.get('/validate', auth.ensureAuthenticated(), function (req, res) {
+        res.json({
+            success: true,
+            timestamp: Date.now(),
+            user: _.omit(req.user.values, 'hash', 'salt', 'activationKey', 'resetPasswordKey')
+        });
     });
 };
