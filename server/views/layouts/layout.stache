@@ -4,22 +4,14 @@
     <meta charset="utf-8">
     <title>{{title}}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="/css/site.css" />
-
-    {{#each pageStyles}}
-    <link rel="stylesheet" href="/css/{{this}}.css" />
-    {{/each}}
+    <link rel="stylesheet" href="{{asset '/css/site.css'}}" />
 </head>
 <body class="{{bodyClass}}">
     {{{body}}}
 
-    <script src="/js/vendor.js"></script>
-    <script src="/js/app-built.js"></script>
-    <script src="/js/templates.js"></script>
-
-    {{#each pageScripts}}
-    <script src="/js/pages/{{this}}.js"></script>
-    {{/each}}
+    <script src="{{asset '/js/vendor.js'}}"></script>
+    <script src="{{asset '/js/app-built.js'}}"></script>
+    <script src="{{asset '/js/templates.js'}}"></script>
 
     <script>
         window.ENV = window.ENV || {};
