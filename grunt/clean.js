@@ -1,3 +1,4 @@
 module.exports = {
-	build: 'build'
+	build: 'build',
+	assets: 'server/assets.json'
 };

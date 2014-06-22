@@ -29,6 +29,8 @@ client/components/
 
 # Built files
 dist/
+build/
+server/assets.json
 
 # Sqlite database
 *.sqlite
