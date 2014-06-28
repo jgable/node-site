@@ -1,8 +1,10 @@
 var express  = require('express'),
     initialize = require('express-initializers'),
+    logger = require('./logger'),
 
     app = express();
 
+logger.profile('startup');
 // Let the initializers run
 initialize(app)
     .then(function () {
@@ -14,6 +16,9 @@ initialize(app)
     .catch(function (err) {
         console.log('Unable to initialize app: ' + err.message);
         console.log(err.stack);
+    })
+    .finally(function () {
+        logger.profile('startup');
     });
 
 module.exports = app;

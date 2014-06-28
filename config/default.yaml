@@ -2,13 +2,8 @@
 Site:
   domain: 'node-site.com'
 
-Assets:
-  # TODO: Change to CDN if you have one setup, eg; '//alskdfjowe.amazonaws.com/built'
-  root: ''
-  s3:
-    key: ''
-    secret: ''
-    bucket: ''
+Logging:
+  level: warn
 
 Database:
   name: site-db
@@ -27,3 +22,11 @@ Mail:
       user: postmaster@node-site.mailgun.org
       # Using quotes here because strings that lead with numbers cause dedent parsing error
       pass: "123MyPassword"
+
+Assets:
+  # TODO: Change to CDN if you have one setup, eg; '//alskdfjowe.amazonaws.com/built'
+  root: ''
+  s3:
+    key: ''
+    secret: ''
+    bucket: ''
