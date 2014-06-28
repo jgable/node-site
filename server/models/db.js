@@ -1,8 +1,14 @@
 
-var Sequelize = require('sequelize'),
-    dbConfig = require('config').Database;
+var _ = require('lodash'),
+    Sequelize = require('sequelize'),
+    dbConfig = require('config').Database,
+    logger = require('../logger');
 
-var db = new Sequelize(dbConfig.name, dbConfig.user, dbConfig.pass, dbConfig.server);
+var serverConfig = _.merge(dbConfig.server, {
+    logging: logger.debug
+});
+
+var db = new Sequelize(dbConfig.name, dbConfig.user, dbConfig.pass, serverConfig);
 
 module.exports = {
     instance: db,

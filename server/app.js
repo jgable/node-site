@@ -7,15 +7,9 @@ var express  = require('express'),
 logger.profile('startup');
 // Let the initializers run
 initialize(app)
-    .then(function () {
-        // Start listening for requests
-        app.listen(app.get('port'), function () {
-            console.log('Now listening on port ' + app.get('port'));
-        });
-    })
     .catch(function (err) {
-        console.log('Unable to initialize app: ' + err.message);
-        console.log(err.stack);
+        logger.error('Unable to initialize app: ' + err.message);
+        logger.error(err.stack);
     })
     .finally(function () {
         logger.profile('startup');
