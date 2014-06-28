@@ -1,8 +1,12 @@
-var express  = require('express'),
+var http = require('http'),
+    express  = require('express'),
     initialize = require('express-initializers'),
     logger = require('./logger'),
 
     app = express();
+
+// Increase the global maxSockets value
+http.globalAgent.maxSockets = 1000;
 
 logger.profile('startup');
 // Let the initializers run
