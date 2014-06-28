@@ -5,11 +5,16 @@ My current default Node site template for spinning up prototypes and other aweso
 
 ### Features
 
-- Bootstrap styles
+- Bootstrap styles with LESS
 - Sequelize ORM with sqlite, mysql or postgres
 - Passport Local with Sequelize backend
 - Sequelize session storage
 - Login, Register and Forgot Password functionality
+- Mailgun integration
+- Logging with Winston
+- LiveReload CSS and JavaScript support
+- Zero downtime support with [naught](https://github.com/andrewrk/naught)
+- Production ready asset pipeline with minification and asset hashing
 - Ember with ES6 module transpilation
 
 ### Configuration
