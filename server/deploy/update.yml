@@ -1,0 +1,43 @@
+---
+- name: Update site from source
+  hosts: nodesite-web
+  vars:
+    deployUser: jacob
+    webUser: web
+    webUserBin: /home/web/local/bin
+    node: "{{ webUserBin }}/node"
+    grunt: "{{ webUserBin }}/grunt"
+    npm: "{{ webUserBin }}/npm"
+    bower: "{{ webUserBin }}/bower"
+    gitRepo: git@github.com:jgable/node-site.git
+    codeDir: /home/web/code/node-site
+  remote_user: "{{ deployUser }}"
+  tasks:
+    - name: pull latest
+      git: repo={{ gitRepo }} dest={{ codeDir }}
+      register: latest
+      sudo: yes
+      sudo_user: "{{ webUser }}"
+
+    - name: install npm dependencies
+      shell: "{{ node }} {{ npm }} install chdir={{ codeDir }}"
+      sudo: yes
+      sudo_user: "{{ webUser }}"
+      when: latest|success
+
+    - name: install bower dependencies
+      shell: "{{ node }} {{ bower }} install chdir={{ codeDir }}"
+      sudo: yes
+      sudo_user: "{{ webUser }}"
+      when: latest|success
+
+    - name: recompile assets
+      shell: "{{ node }} {{ grunt }} assets chdir={{ codeDir }}"
+      sudo: yes
+      sudo_user: "{{ webUser }}"
+      when: latest|success
+
+    - name: reload naught
+      shell: service nodesite reload
+      sudo: yes
+      when: latest|success
