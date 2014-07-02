@@ -19,6 +19,9 @@
         {{#user}}
         window.ENV.APP.user = {{{this}}};
         {{/user}}
+        {{#assets}}
+        window.ENV.APP.assets = {{{this}}};
+        {{/assets}}
         window.App = requireModule('appkit/app')['default'].create(window.ENV.APP);
     </script>
 </body>

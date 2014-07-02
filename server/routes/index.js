@@ -1,7 +1,8 @@
 'use strict';
 
 var _ = require('lodash'),
-    auth = require('../middleware/auth');
+    auth = require('../middleware/auth'),
+    assetsHash = require('../assets.json');
 
 module.exports = function (app) {
     var pageRoutes = [
@@ -21,7 +22,8 @@ module.exports = function (app) {
             }
 
             res.render('index', {
-                user: JSON.stringify(_.pick(req.user.values, 'id', 'username', 'createdAt', 'updatedAt'))
+                user: JSON.stringify(_.pick(req.user.values, 'id', 'username', 'createdAt', 'updatedAt')),
+                assets: JSON.stringify(assetsHash)
             });
         };
 
