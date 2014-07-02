@@ -3,7 +3,7 @@ Site:
   domain: 'node-site.com'
 
 Logging:
-  level: warn
+  level: info
 
 Database:
   name: site-db
