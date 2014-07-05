@@ -12,12 +12,12 @@ module.exports = {
             expand: true,
             cwd: 'client/img',
             src: '*',
-            dest: 'build/img/',
+            dest: '.grunt/build/img/',
         }, {
             expand: true,
             cwd: 'client/swagger/img',
             src: '*',
-            dest: 'build/img/',
+            dest: '.grunt/build/img/',
         }]
     },
     dist: {
