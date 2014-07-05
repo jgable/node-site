@@ -8,7 +8,7 @@ module.exports = {
             expand: true,
             cwd: 'client/app/',
             src: '**/*.js',
-            dest: 'build/js/app/'
+            dest: '.grunt/build/js/app/'
         }]
     }
 };

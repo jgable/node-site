@@ -1,5 +1,5 @@
 module.exports = {
     build: {
-        src: ['build/**/*.{css,js,png,gif,jpg,jpeg}']
+        src: ['.grunt/build/**/*.{css,js,png,gif,jpg,jpeg}']
     }
 };

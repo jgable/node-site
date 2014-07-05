@@ -1,10 +1,10 @@
 module.exports = {
 	swagger: {
 		files: {
-			'build/css/swagger-reset.css': [
+			'.grunt/build/css/swagger-reset.css': [
 				'client/swagger/less/reset.less'
 			],
-			'build/css/swagger.css': [
+			'.grunt/build/css/swagger.css': [
 				'client/swagger/less/screen.less'
 			]
 		}
@@ -14,7 +14,7 @@ module.exports = {
 			expand: true,
 			cwd: 'client/less',
 			src: '*.less',
-			dest: 'build/css/',
+			dest: '.grunt/build/css/',
 			ext: '.css'
 		}]
 	}

@@ -1,7 +1,7 @@
 module.exports = {
     app: {
-        src: ['build/js/app/**/*.js'],
-        dest: 'build/js/app-built.js',
+        src: ['.grunt/build/js/app/**/*.js'],
+        dest: '.grunt/build/js/app-built.js',
         options: {
             sourcesContent: true
         },

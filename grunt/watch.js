@@ -1,18 +1,18 @@
 module.exports = {
     less: {
         files: ['client/less/**/*.less', 'client/swagger/less/*.less'],
-        tasks: ['clean:build', 'build', 'hash'],
+        tasks: ['rebuild'],
         options: {
             livereload: true
         }
     },
     templates: {
         files: ['client/app/templates/**/*.hbs'],
-        tasks: ['clean:build', 'build', 'hash']
+        tasks: ['rebuild']
     },
     scripts: {
         files: ['client/app/**/*.js', 'client/swagger/js/*.js'],
-        tasks: ['clean:build', 'build', 'hash'],
+        tasks: ['rebuild'],
         options: {
             livereload: true
         }

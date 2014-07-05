@@ -1,7 +1,7 @@
 module.exports = {
     swagger: {
         files: {
-            'build/js/swagger.js': [
+            '.grunt/build/js/swagger.js': [
                 'client/swagger/js/shred.bundle.js',
                 'client/swagger/js/jquery-1.8.0.min.js',
                 'client/swagger/js/jquery.slideto.min.js',
@@ -19,7 +19,7 @@ module.exports = {
     },
     vendor: {
         files: {
-            'build/js/vendor.js': [
+            '.grunt/build/js/vendor.js': [
                 'client/components/jquery/dist/jquery.min.js',
                 'client/components/handlebars/handlebars.js',
                 'client/components/ember/ember.js',
@@ -32,6 +32,24 @@ module.exports = {
                 'client/components/moment/min/moment.min.js',
                 'client/components/bootstrap/dist/js/bootstrap.js'
             ]
+        }
+    },
+    dist: {
+        files: {
+            '.grunt/build/js/vendor.js': [
+                'client/components/jquery/dist/jquery.min.js',
+                'client/components/handlebars/handlebars.js',
+                'client/components/ember/ember.prod.js',
+                'client/components/ember-data/ember-data.prod.js',
+                'client/components/loader.js/loader.js',
+                'client/components/ember-resolver/dist/ember-resolver.prod.js',
+                'client/components/ic-ajax/dist/globals/main.js',
+                'client/components/ember-load-initializers/ember-load-initializers.js',
+                'client/components/lodash/dist/lodash.min.js',
+                'client/components/moment/min/moment.min.js',
+                'client/components/bootstrap/dist/js/bootstrap.js'
+            ],
+            '.grunt/build/js/app-built.js': ['.grunt/build/js/app/**/*.js']
         }
     }
 };

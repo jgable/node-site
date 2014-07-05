@@ -14,16 +14,16 @@ module.exports = {
     },
     prod: {
         sync: [{
-            src: 'build/**/*.{js,css,png,gif,jpg,jpeg}',
-            rel: 'build',
-            dest: 'build/'
+            src: '.grunt/build/**/*.{js,css,png,gif,jpg,jpeg}',
+            rel: '.grunt/build',
+            dest: '.grunt/build/'
         }]
     },
     prodgz: {
         sync: [{
-            src: 'build/**/*.{js,css,png,gif,jpg,jpeg}',
-            rel: 'build',
-            dest: 'buildgz/',
+            src: '.grunt/build/**/*.{js,css,png,gif,jpg,jpeg}',
+            rel: '.grunt/build',
+            dest: '.grunt/buildgz/',
             options: {
                 gzip: true
             }

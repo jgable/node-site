@@ -2,9 +2,9 @@ module.exports = {
     build: {
         files: [{
             expand: true,
-            cwd: 'build/css',
+            cwd: '.grunt/build/css',
             src: '**/*.css',
-            dest: 'build/css'
+            dest: '.grunt/build/css'
         }]
     }
 };

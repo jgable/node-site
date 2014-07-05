@@ -1,3 +1,6 @@
+var path = require('path'),
+    grunt = require('grunt');
+
 module.exports = {
     scripts: {
         files: [{
@@ -15,6 +18,28 @@ module.exports = {
             cwd: 'client/swagger/img',
             src: '*',
             dest: 'build/img/',
+        }]
+    },
+    dist: {
+        files: [{
+            expand: true,
+            cwd: '.grunt/build',
+            src: '**/*.*',
+            dest: 'build',
+            filter: function (filepath) {
+                var dest = path.join(
+                    'build',
+                    // Remove the parent 'js/src' from filepath
+                    filepath.split(path.sep).slice(2).join(path.sep)
+                );
+                var doesntExist = !grunt.file.exists(dest);
+
+                if (!doesntExist) {
+                    grunt.log.writeln('Skipping existing file: ' + dest);
+                }
+
+                return doesntExist;
+            },
         }]
     }
 };

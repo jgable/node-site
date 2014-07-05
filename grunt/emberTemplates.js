@@ -13,7 +13,7 @@ module.exports = {
             precompile: false
         },
         src: 'client/app/**/*.{hbs,hjs,handlebars}',
-        dest: 'build/js/templates.js'
+        dest: '.grunt/build/js/templates.js'
     },
     dist: {
         src: '<%= emberTemplates.debug.src %>',

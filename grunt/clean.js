@@ -1,4 +1,5 @@
 module.exports = {
-	build: 'build',
-	assets: 'server/assets.json'
+	build: '.grunt/build',
+	assets: 'server/assets.json',
+	dist: 'build'
 };

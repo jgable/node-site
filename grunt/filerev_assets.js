@@ -6,7 +6,7 @@ module.exports = {
     },
     build: {
         options: {
-            cwd: 'build',
+            cwd: '.grunt/build',
             dest: 'server/assets.json',
             prefix: assetsRoot
         }
