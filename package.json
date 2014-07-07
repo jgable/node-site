@@ -38,7 +38,7 @@
   "devDependencies": {
     "ember-template-compiler": "~1.5.1",
     "grunt": "~0.4.2",
-    "grunt-concat-sourcemap": "~0.4.1",
+    "grunt-concat-sourcemap": "~0.4.3",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "~0.5.0",
