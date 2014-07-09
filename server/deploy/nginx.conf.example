@@ -45,8 +45,14 @@ server {
 
     error_page 502  /errors/502.html;
 
-    location ~ ^/(images/|img/|javascript/|js/|css/|stylesheets/|flash/|media/|static/|robots.txt|humans.txt|favicon.ico) {
+    location ~ ^/(images/|img/|javascript/|js/|css/|stylesheets/|flash/|media/|static/|robots.txt|humans.txt) {
       root /home/web/code/nodesite/build;
+      access_log off;
+      expires max;
+    }
+
+    location ~ ^/(favicon.ico|apple-touch-icon.png) {
+      root /home/web/code/nodesite;
       access_log off;
       expires max;
     }
