@@ -1,2 +1,17 @@
-@import 'includes/global.less';
-@import 'includes/s3.less';
+@import '../components/bootstrap/less/bootstrap.less';
+
+@import 'common/variables';
+
+@import 'pages/login';
+
+body {
+  min-height: @site-height;
+  padding-top: 70px;
+}
+
+.form {
+	&-feedback {
+		margin-bottom: 10px;
+		display: block;
+	}
+}
