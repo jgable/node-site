@@ -1,6 +1,6 @@
 {
   "name": "node-site",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "start": "grunt server",
     "test": "node_modules/jshint/bin/jshint Gruntfile.js server/**/*.js client/app/**/*.js test/*.js && node_modules/mocha/bin/mocha -R spec -r should test/*.js"
