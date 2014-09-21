@@ -1,6 +1,7 @@
 
 Site:
   domain: 'node-site.com'
+  debug: true
 
 Logging:
   level: info

@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash'),
+    debug = require('config').Site.debug,
     auth = require('../middleware/auth'),
     assetsHash = require('../assets.json');
 
@@ -17,14 +18,18 @@ module.exports = function (app) {
             '/user'
         ],
         renderIndexPage = function (req, res) {
+            var templateData = {
+                debug: debug
+            };
+
             if (!req.user) {
-                return res.render('index');
+                return res.render('index', templateData);
             }
 
-            res.render('index', {
+            res.render('index', _.extend(templateData, {
                 user: JSON.stringify(_.pick(req.user.values, 'id', 'username', 'createdAt', 'updatedAt')),
-                assets: JSON.stringify(assetsHash)
-            });
+                assets: JSON.stringify(assetsHash),
+            }));
         };
 
     pageRoutes.forEach(function (route) {

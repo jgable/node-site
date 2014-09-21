@@ -23,8 +23,17 @@ module.exports = {
     // Starting the server
     'server': ['express:dev', 'watch'],
 
+    // Special steps for node-inspector debugging + live reload
+    'server:debug': ['concurrent:debug'],
+
     // Development specific aliases
     'dev': ['clean:build', 'build', 'hash', 'copy:scripts', 'copy:dist', 'server'],
+
+    // Special steps for node-inspector debugging + live reload
+    'dev:build': ['clean:build', 'build', 'hash', 'copy:scripts', 'copy:dist'],
+
+    // Special steps for node-inspector debugging + live reload
+    'dev:debug': ['dev:build', 'server:debug'],
 
     // Production specific aliases
     'assets': ['clean:build', 'build:dist', 'minify', 'hash', 'copy:dist'],
