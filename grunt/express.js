@@ -3,5 +3,11 @@ module.exports = {
         script: 'server/app.js',
         output: 'listening on port'
     },
-    dev: {}
+    dev: {
+        options: {
+            script: 'server/app.js',
+            output: 'listening on port',
+            debug: true
+        }
+    }
 };

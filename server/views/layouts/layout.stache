@@ -8,7 +8,11 @@
 </head>
 <body class="{{bodyClass}}">
     {{{body}}}
-
+    
+    {{#debug}}
+        <script src="//localhost:35729/livereload.js"></script>
+    {{/debug}}
+    
     <script src="{{asset '/js/vendor.js'}}"></script>
     <script src="{{asset '/js/app-built.js'}}"></script>
     <script src="{{asset '/js/templates.js'}}"></script>

@@ -19,12 +19,15 @@ module.exports = {
     },
     express: {
         options: {
-            spawn: false
+            spawn: false,
+            atBegin: true,
+            livereload: true
         },
         files: [
             'server/**/*'
         ],
         tasks: [
+            'express:dev:stop',
             'express:dev'
         ]
     }
